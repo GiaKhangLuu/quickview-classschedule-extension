@@ -6,7 +6,7 @@ const Login = async (username, password) => {
     browser = await puppeteer.launch({ headless: true });
     page = await browser.newPage();
     try {
-        await page.goto('https://portal.huflit.edu.vn/login', { timeout: 30000, waituntil: 'domcontentloaded' });
+        await page.goto('https://portal.huflit.edu.vn/login', { timeout: 60000, waituntil: 'domcontentloaded' });
         const txtUser = await page.$("input[name=txtTaiKhoan]");
         const txtPass = await page.$("input[name=txtMatKhau]");
         await page.evaluate((txtUser, txtPass, username, password) => {
@@ -41,7 +41,7 @@ module.exports.CheckLogin = async (username, password) => {
 const GoToScheduleTab = async () => {
     //await this.Login(username, password);
     try {
-        await page.goto('https://portal.huflit.edu.vn/Home/Schedules', { waitUntil: 'domcontentloaded' });
+        await page.goto('https://portal.huflit.edu.vn/Home/Schedules', { timeout: 60000, waitUntil: 'domcontentloaded' });
         console.log('PAGE SCHEDULE LOADED !!!');
    } catch(err) {
         console.log(err);
