@@ -3,7 +3,7 @@ var browser = null;
 var page = null;
 
 const Login = async (username, password) => {
-    browser = await puppeteer.launch({ headless: true });
+    browser = await puppeteer.launch({ headless: false });
     page = await browser.newPage();
     try {
         await page.goto('https://portal.huflit.edu.vn/login', { timeout: 60000, waituntil: 'domcontentloaded' });
