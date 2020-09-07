@@ -1,0 +1,11 @@
+{
+    "name": "Class Schedule",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "This extension is used to see your class schedule quickly",
+    "browser_action": {
+        "default_popup": "/Client/src/login.html",
+        "popup": "/Client/src/login.html"
+    },
+    "permissions": ["storage", "tabs"]
+}
