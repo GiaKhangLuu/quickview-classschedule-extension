@@ -1,0 +1,34 @@
+div {
+    margin-bottom: 3px;
+}
+
+.title {
+    padding-left: 7px;
+    font-size: 16px;
+}
+
+.value {
+    font-size: 16px;
+}
+
+#btnContainer {
+    text-align: center;
+}
+
+button[type="submit"] {
+    outline: none;
+    width: 80px;
+    height: 25px;
+    border: none; 
+    color: black;
+    transition: 0.3s;
+    font-size: 16px;
+    background-color: blue;
+    opacity: 0.6;
+    text-align: center;
+    border-radius: 15px;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.8;
+}
