@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('Client/'));
 
-app.get('/', (req, resp) => { resp.send('Hello') });
+app.get('/', (req, resp) => { resp.redirect('/login') });
 
 app.get('/login', (req, resp) => { 
     resp.sendfile('Client/src/login.html');
