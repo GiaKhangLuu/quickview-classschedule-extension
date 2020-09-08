@@ -44,6 +44,7 @@ const GetData = async (req, resp) => {
     const subjects = data[1];
     console.log(user);
     console.log(subjects);
+    resp.status(200);
     resp.json(user);
 }
 
