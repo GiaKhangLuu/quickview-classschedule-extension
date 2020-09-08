@@ -6,6 +6,7 @@ const Login = async (username, password) => {
     console.log('Run run runnn .....');
     browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
     page = await browser.newPage();
+    page.setDefaultNavigationTimeout(60000);
     try {
         await page.goto('https://portal.huflit.edu.vn/login', { timeout: 60000, waituntil: 'domcontentloaded' });
         const txtUser = await page.$("input[name=txtTaiKhoan]");
@@ -21,6 +22,7 @@ const Login = async (username, password) => {
         ]);
     } catch(err) {
         console.log(err);
+        console.log("FAILED !!!");
         await browser.close();
     } 
 };
