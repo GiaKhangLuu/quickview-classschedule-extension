@@ -4,7 +4,7 @@ var page = null;
 
 const Login = async (username, password) => {
     console.log('Run run runnn .....');
-    browser = await puppeteer.launch({ arg: ['--no-sandbox'], headless: true });
+    browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
     page = await browser.newPage();
     try {
         await page.goto('https://portal.huflit.edu.vn/login', { timeout: 60000, waituntil: 'domcontentloaded' });
