@@ -10,6 +10,14 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('Client/'));
+//set time out for server
+app.use(function(req, resp, next) {
+    res.setTimeout(120000, function() {
+        console.log('Request has timed out');
+        res.send(408);
+    })
+    next();
+});
 
 app.get('/', (req, resp) => { resp.redirect('/login') });
 
