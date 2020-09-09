@@ -40,7 +40,7 @@ const CheckLogin = async (req, resp, next) => {
     //errMsg !== nulll => login failed
     if(rs !== true) {
         console.log('LOGIN FAILED !!!');
-        resp.send('LOGIN FAILED !!!'); 
+        resp.status(200).send('LOGIN FAILED !!!'); 
         return;
     }
     console.log('LOGIN SUCCESSFULLY !!!');
