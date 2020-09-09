@@ -2,13 +2,14 @@ const puppeteer = require('puppeteer');
 var browser = null;
 var page = null;
 
-const Login = async (username, password) => {
+module.exports.Login = async (username, password) => {
     console.log('Run run runnn .....');
     browser = await puppeteer.launch({ args: ['--no-sandbox'], headless: true });
     page = await browser.newPage();
-    page.setDefaultNavigationTimeout(60000);
+    page.setDefaultNavigationTimeout(30000);
+    var resp = null;
     try {
-        await page.goto('https://portal.huflit.edu.vn/login', { timeout: 60000, waituntil: 'domcontentloaded' });
+        await page.goto('https://portal.huflit.edu.vn/login', { waituntil: 'domcontentloaded' });
         const txtUser = await page.$("input[name=txtTaiKhoan]");
         const txtPass = await page.$("input[name=txtMatKhau]");
         await page.evaluate((txtUser, txtPass, username, password) => {
@@ -16,35 +17,38 @@ const Login = async (username, password) => {
             txtPass.value = password;
         }, txtUser, txtPass, username, password);
         const btnLogin = await page.$(".loginbox-submit > input");
-        await Promise.all([
+        resp = await Promise.all([
             page.waitForNavigation(), //the promise resolves after navigation has finished
             btnLogin.click() //click the button will indirectly cause navigation 
         ]);
     } catch(err) {
         console.log(err);
-        console.log("FAILED !!!");
-        await browser.close();
-    } 
+        return false;
+    }; 
+    if(resp == null || resp[0].url() === 'https://portal.huflit.edu.vn/login') { 
+        return false;
+    };
+    return true;
 };
 
-module.exports.CheckLogin = async (username, password) => {
-    var errMessage = null;
-    await Login(username, password);
-    errMessage = await page.evaluate(() => {
-        const spanErr = document.querySelector('.loginbox-forgot > span');
-        //if spanErr exist (!= null) => login failed => return portal msg
-        if(spanErr !== null) {
-            return spanErr.innerText;
-        }
-        return null;
-    });
-    return errMessage
-}
+//module.exports.CheckLogin = async (username, password) => {
+    //var errMessage = null;
+    //await Login(username, password);
+    //errMessage = await page.evaluate(() => {
+        //const spanErr = document.querySelector('.loginbox-forgot > span');
+        ////if spanErr exist (!= null) => login failed => return portal msg
+        //if(spanErr !== null) {
+            //return spanErr.innerText;
+        //}
+        //return null;
+    //});
+    //return errMessage
+//}
 
 const GoToScheduleTab = async () => {
     //await this.Login(username, password);
     try {
-        await page.goto('https://portal.huflit.edu.vn/Home/Schedules', { timeout: 60000, waitUntil: 'domcontentloaded' });
+        await page.goto('https://portal.huflit.edu.vn/Home/Schedules', { waitUntil: 'domcontentloaded' });
         console.log('PAGE SCHEDULE LOADED !!!');
    } catch(err) {
         console.log(err);

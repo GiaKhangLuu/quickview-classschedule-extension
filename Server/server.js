@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const puppeteer = require('./process');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 
 app.use(bodyParser.json());
@@ -36,11 +36,11 @@ app.get('/user', (req, resp) => {
 const CheckLogin = async (req, resp, next) => {
     const username = req.body.username;
     const password = req.body.password;
-    const errMsg = await puppeteer.CheckLogin(username, password);
+    const rs = await puppeteer.Login(username, password);
     //errMsg !== nulll => login failed
-    if(errMsg !== null) {
+    if(rs !== true) {
         console.log('LOGIN FAILED !!!');
-        resp.redirect('/login'); 
+        resp.send('LOGIN FAILED !!!'); 
         return;
     }
     console.log('LOGIN SUCCESSFULLY !!!');
