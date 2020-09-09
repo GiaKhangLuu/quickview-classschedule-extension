@@ -17,6 +17,7 @@ app.use(function(req, resp, next) {
         res.send(408);
     })
     next();
+
 });
 
 app.get('/', (req, resp) => { resp.redirect('/login') });
@@ -52,8 +53,7 @@ const GetData = async (req, resp) => {
     const subjects = data[1];
     console.log(user);
     console.log(subjects);
-    resp.status(200);
-    resp.json(user);
+    resp.status(200).json(user);
 }
 
 app.post('/login', CheckLogin, GetData);
