@@ -1,12 +1,15 @@
 document.getElementById('btnLogin').onclick = async function() {
+    alert('Vui lòng chờ trong giây lát');
     console.log('Running...');
     const data = await GetData();
     if(data !== null) {
         console.log("Get data successfully!!!");
         console.log(data);
-        chrome.storage.local.set(data, data => console.log(data));
+        chrome.storage.local.set(data, () => console.log('Set storage successfully'));
+        alert('Đăng nhập thất bại');
     } else {
         console.log('Login failed');
+        alert('Lỗi đăng nhập');
     }
 };
 

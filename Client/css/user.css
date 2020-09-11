@@ -15,9 +15,9 @@ div {
     text-align: center;
 }
 
-button[type="submit"] {
+button {
     outline: none;
-    width: 80px;
+    width: 100px;
     height: 25px;
     border: none; 
     color: black;
@@ -29,6 +29,6 @@ button[type="submit"] {
     border-radius: 15px;
 }
 
-button[type="submit"]:hover {
+button:hover {
     opacity: 0.8;
 }

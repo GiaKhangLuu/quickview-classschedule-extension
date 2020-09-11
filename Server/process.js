@@ -98,7 +98,7 @@ const CrawlScript = () => {
         subjectArr.push(subject);
     });
     if(subjectArr.length > 1) {
-        const rs = { name: student, subjects: subjectArr };
+        const rs = { user: student, subjects: subjectArr };
         return rs;
     }
     return null;

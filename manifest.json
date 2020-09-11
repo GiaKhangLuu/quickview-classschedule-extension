@@ -3,9 +3,12 @@
     "version": "1.0",
     "manifest_version": 2,
     "description": "This extension is used to see your class schedule quickly",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
     "browser_action": {
-        "default_popup": "/Client/src/login.html",
-        "popup": "/Client/src/login.html"
+        "default_popup": "/Client/src/login.html"
     },
     "permissions": [
         "storage", 
