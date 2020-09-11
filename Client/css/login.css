@@ -15,7 +15,7 @@ input[type="password"] {
     height: 25px;
 }
 
-input[type="submit"] {
+input[type="button"] {
     outline: none;
     width: 110px;
     height: 25px;
@@ -29,7 +29,7 @@ input[type="submit"] {
     border-radius: 15px;
 }
 
-input[type="submit"]:hover {
+input[type="button"]:hover {
 
     opacity: 0.8;
 } 

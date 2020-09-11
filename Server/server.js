@@ -4,8 +4,7 @@ const bodyParser = require('body-parser');
 const puppeteer = require('./process');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
-
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,10 +29,11 @@ app.get('/login', (req, resp) => {
 });
 
 app.get('/user', (req, resp) => {
-    resp.sendfile('/src/user.html');
+    resp.sendfile('Client/src/user.html');
 })
 
 const CheckLogin = async (req, resp, next) => {
+    console.log(req.body);
     const username = req.body.username;
     const password = req.body.password;
     const rs = await puppeteer.Login(username, password);
@@ -53,7 +53,7 @@ const GetData = async (req, resp) => {
     const subjects = data[1];
     console.log(user);
     console.log(subjects);
-    resp.status(200).json(user);
+    resp.status(200).json(data);
 }
 
 app.post('/login', CheckLogin, GetData);
