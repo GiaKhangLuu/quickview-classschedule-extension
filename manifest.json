@@ -10,6 +10,7 @@
     "permissions": [
         "storage", 
         "tabs",
-        "https://quickview-classschedule.herokuapp.com/login"
+        "https://quickview-classschedule.herokuapp.com/login",
+        "http://localhost:3000/login"
     ]
 }

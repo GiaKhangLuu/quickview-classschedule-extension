@@ -1,11 +1,18 @@
 document.getElementById('btnLogin').onclick = async function() {
     console.log('Running...');
     const data = await GetData();
-    console.log(data);
-}
+    if(data !== null) {
+        console.log("Get data successfully!!!");
+        console.log(data);
+        chrome.storage.local.set(data, data => console.log(data));
+    } else {
+        console.log('Login failed');
+    }
+};
 
 const GetData = async () => {
-    const url = "https://quickview-classschedule.herokuapp.com/login";
+    //const url = "https://quickview-classschedule.herokuapp.com/login";
+    const url = "http://localhost:3000/login";
     const username = document.getElementsByName('username')[0].value;
     const password = document.getElementsByName('password')[0].value;
     const data = JSON.stringify({
@@ -26,8 +33,8 @@ const GetData = async () => {
             const jsonResponse = await response.json();
             return jsonResponse;
         }
-        throw new Error("Request failed!");
+        throw new Error();
     } catch(error) {
-        console.log(error.message);
+        return null;
     }
 }

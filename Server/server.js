@@ -49,8 +49,8 @@ const CheckLogin = async (req, resp, next) => {
 
 const GetData = async (req, resp) => {
     const data = await puppeteer.GetData();
-    const user = data[0];
-    const subjects = data[1];
+    const user = data.user;
+    const subjects = data.subjects;
     console.log(user);
     console.log(subjects);
     resp.status(200).json(data);

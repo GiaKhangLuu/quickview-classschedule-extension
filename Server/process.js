@@ -98,7 +98,8 @@ const CrawlScript = () => {
         subjectArr.push(subject);
     });
     if(subjectArr.length > 1) {
-        return [student, subjectArr];
+        const rs = { name: student, subjects: subjectArr };
+        return rs;
     }
     return null;
 };
@@ -147,7 +148,7 @@ module.exports.GetData = async (username, password) => {
     }
     if(data != null) {
         console.log('CRAWL SUCCESSFULLY !!!');
-        const subjectArr = data[1];
+        const subjectArr = data.subjects;
         subjectArr.forEach(subject => {
             subject["time"] = ConvertClassHourToHour(subject["time"]);
         });
