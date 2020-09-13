@@ -6,7 +6,8 @@
 body {
     font: arial;
     background-color: white;
-    width: 240px;
+    width: 600px;
+    font-size: 16px;
 }
 
 h3 {

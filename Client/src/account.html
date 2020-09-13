@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/account.css">
+</head>
+<body>
+    <div id="infoUser">
+        <div id="userIdContainer">
+            <span><b>MSSV:</b></span>
+            <span id="username"></span>
+        </div>
+        <div id="userNameContainer">
+            <span><b>Tên sinh viên:</b></span>
+            <span id="userid"></span>
+        </div>
+    </div>   
+    <hr>
+    <div id="loginContainer">
+        <div class="loginForm"> 
+            <form >
+                <div class="form-row">
+                    <label>Tên đăng nhập</label>
+                    <input type="text" name="username" value="" /> <br>
+                </div>
+                <div class="form-row">
+                    <label>Mật khẩu</label>
+                    <input type="password" name="password"  value=""/> <br>
+                </div>
+                <div id="buttonContainer">
+                    <input type="button" id="btnLogin" value="Đăng nhập"/>
+                    <input type="button" id="btnLogout" value="Đăng xuất" disabled/>
+                </div>
+            </form>
+        </div>
+    </div> 
+    <script src="../js/account.js"></script>
+</body>
+</html>

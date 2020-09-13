@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('Client/'));
+app.use(express.static('Client'));
 //set time out for server
 app.use(function(req, resp, next) {
     resp.setTimeout(120000, function() {
@@ -19,17 +19,14 @@ app.use(function(req, resp, next) {
 
 });
 
-app.get('/', (req, resp) => { resp.redirect('/login') });
+app.get('/', (req, resp) => { resp.redirect('/main') });
 
-app.get('/login', (req, resp) => { 
-    resp.sendfile('Client/src/login.html');
-    //if(resp.locals.errMsg !== null) {
-        //resp.send('<span style="color: red;">' + resp.locals.errMsg + '</span>');
-    //}
+app.get('/main', (req, resp) => { 
+    resp.sendFile('main.html', { root: 'Client/src/' });
 });
 
-app.get('/user', (req, resp) => {
-    resp.sendfile('Client/src/user.html');
+app.get('/account', (req, resp) => {
+    resp.sendFile('account.html', { root: 'Client/src' });
 })
 
 const CheckLogin = async (req, resp, next) => {
@@ -38,9 +35,9 @@ const CheckLogin = async (req, resp, next) => {
     const password = req.body.password;
     const rs = await puppeteer.Login(username, password);
     //errMsg !== nulll => login failed
-    if(rs !== true) {
+    if(!rs) {
         console.log('LOGIN FAILED !!!');
-        resp.status(200).send('LOGIN FAILED !!!'); 
+        resp.status(200).send(null); 
         return;
     }
     console.log('LOGIN SUCCESSFULLY !!!');

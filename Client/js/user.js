@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     chrome.storage.local.get(null, data => {
-        if(CheckEmptyObj(data)) {
+        if(IsEmptyObj(data)) {
             return;
         }
         const username = document.getElementById('username');
@@ -11,13 +11,13 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 });
 
-document.getElementById('btnSignOut').onclick = () => {
+document.getElementById('btnLogout').onclick = () => {
     chrome.storage.local.clear(() => { 
         console.log('Cleared storage');
         alert('Đăng xuất thành công');
     });
 }
 
-const CheckEmptyObj = obj => {
+const IsEmptyObj = obj => {
     return Object.keys(obj).length === 0;
 }

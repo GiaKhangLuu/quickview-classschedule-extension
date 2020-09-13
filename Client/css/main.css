@@ -1,0 +1,45 @@
+* {
+    margin: 0px;
+    padding: 0px;
+} 
+
+body {
+    width: 600px;
+    height: 60px;
+    font-family: Arial;
+}
+
+header {
+    text-align: center;
+}
+
+h3 {
+    margin-top: 4px;
+    font-size: 20px;
+}
+
+#tab {
+    margin-top: 5px;
+}
+
+.tabBody {
+    width: 100%;
+}
+
+.tabBtn {
+    float: left;
+    border: none;
+    outline: none;
+    width: 200px;
+    font-size: 17px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.tabBtn:hover {
+    background-color: darkblue;
+}
+
+.tabContent {
+    display: none;
+}
