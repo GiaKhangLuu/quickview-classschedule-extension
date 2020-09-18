@@ -139,6 +139,17 @@ const ConvertClassHourToHour = classHour => {
   }
 };
 
+const ModifyData = obj => {
+    const temp = obj.time.split(' - ');
+    const startTime = temp[0];
+    const startEnd = temp[1];
+    //console.log(`${startTime} - ${startEnd}`);
+    const startTimeHour = ConvertClassHourToHour(startTime);
+    const startTimeEnd = ConvertClassHourToHour(startEnd);
+    //console.log(startTimeHour);
+    obj.timeHour = `${startTimeHour} - ${startTimeEnd}`;
+}
+
 module.exports.GetData = async (username, password) => {
     const data = await CrawlData();
     if(browser != null && page != null) {
@@ -150,7 +161,7 @@ module.exports.GetData = async (username, password) => {
         console.log('CRAWL SUCCESSFULLY !!!');
         const subjectArr = data.subjects;
         subjectArr.forEach(subject => {
-            subject["time"] = ConvertClassHourToHour(subject["time"]);
+            ModifyData(subject);
         });
         return data;
     }
