@@ -1,16 +1,19 @@
 #infoUser {
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 2%;
 }
 
 #userIdContainer {
     width: 50%;
-    float: left;
 }
 
 #userNameContainer {
     width: 50%;
-    float: left;
+}
+
+#loginContainer {
+    width: 100%;
+    text-align: center;
 }
 
 .form-row {

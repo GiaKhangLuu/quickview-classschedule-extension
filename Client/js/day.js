@@ -67,6 +67,7 @@ var defaultYear = today.getFullYear();
 
 window.addEventListener('DOMContentLoaded', () => {
     GetTodaySubjs();
+    document.body.style.height = "100%";
 });
 
 document.getElementById('btnToday').onclick = () => {
@@ -79,6 +80,7 @@ document.getElementById('btnNextDay').onclick = () => {
     const dayStr = new Date(defaultYear, defaultMonth - 1, defaultDate).toDateString();
     const cusDate = new CustomizedDay(dayStr);
     GetSubjectByDay(cusDate);
+    RenderDate(cusDate);
 }
 
 document.getElementById('btnPreviousDay').onclick = () => {
@@ -86,6 +88,7 @@ document.getElementById('btnPreviousDay').onclick = () => {
     const dayStr = new Date(defaultYear, defaultMonth - 1, defaultDate).toDateString();
     const cusDate = new CustomizedDay(dayStr);
     GetSubjectByDay(cusDate);
+    RenderDate(cusDate);
 }
 
 const GetTodaySubjs = () => {
@@ -110,31 +113,26 @@ const GetSubjectByDay = date => {
                 subjsByDay.push(subject);
             };
         });
-        if(subjsByDay.length === 0) {
-            console.log('Hom nay ban kh co mon hoc');
-        } else {
-            RenderSubjects(subjsByDay);
-        }
+        RenderSubjects(subjsByDay);
+        RenderDate(date);
     });
 };
 
-const IsSubjectOutOfDate = (subject, day) => { //input must be dd/mm/yyyy
-    const dateStartInfo = subject.dateStart.split('/');
-    const dateEndInfo = subject.dateEnd.split('/');
-    const dateInfo = day.split('/');
-    const dateStart = ConvertDateToInt(dateStartInfo[0], dateStartInfo[1], dateStartInfo[2]);
-    const dateEnd = ConvertDateToInt(dateEndInfo[0], dateEndInfo[1], dateEndInfo[2]);
-    const date = ConvertDateToInt(dateInfo[0], dateInfo[1], dateInfo[2]);
+const IsSubjectOutOfDate = (subject, day) => { 
+    const dateStart = ConvertDateToInt(subject.dateStart);
+    const dateEnd = ConvertDateToInt(subject.dateEnd);
+    const date = ConvertDateToInt(day);
     if(dateStart <= date && date <= dateEnd) {
         return false;
     }
     return true;
 }
 
-const ConvertDateToInt = (date, month, year) => {
-    date = parseInt(date);
-    month = parseInt(month);
-    year = parseInt(year);
+const ConvertDateToInt = dateString => { //dateString is dd/mm/yyyy
+    const dateInfo = dateString.split('/');
+    const date = parseInt(dateInfo[0]);
+    const month = parseInt(dateInfo[1]);
+    const year = parseInt(dateInfo[2]);
     var rs = 0;
     var distance = year - 2020;
     rs += distance * 365;
@@ -176,6 +174,8 @@ const ConvertMonthToDay = month => {
             return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31;
         case 11:
             return 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30;
+        default:
+            return 0;
     }
 };
 
@@ -270,7 +270,7 @@ const HandleDecreaseDate = () => {
 }
 
 const RenderTableHeader = table => {
-    const titleArr = ["Thứ", "Tiết", "Môn học", "TG Bắt đầu", "Phòng", "Giảng viên"];
+    const titleArr = ["Thứ", "Tiết", "Môn học", "Thời gian", "Phòng", "Giảng viên"];
     const header = table.createTHead();
     const row = header.insertRow();
     titleArr.forEach(title => {
@@ -293,13 +293,13 @@ const RenderTableBody = (table, subjArr) => {
         const cellDay = row.insertCell();
         const cellClassHour = row.insertCell();
         const cellSubjName = row.insertCell();
-        const cellStartTime = row.insertCell();
+        const cellHour = row.insertCell();
         const cellRoom = row.insertCell();
         const cellLecturer = row.insertCell();
         cellDay.innerText = subject.day;
         cellClassHour.innerText = subject.time;
         cellSubjName.innerText = subject.name;
-        cellStartTime.innerText = subject.time;
+        cellHour.innerText = subject.timeHour;
         cellRoom.innerText = subject.room;
         cellLecturer.innerText = subject.lecturer;
     });
@@ -308,6 +308,23 @@ const RenderTableBody = (table, subjArr) => {
 const RenderSubjects = subjArr => {
     const table = document.getElementById('tableSubjects');
     RemoveOldTable(table);
+    if(subjArr.length === 0) {
+        document.getElementById('noti').style.display = 'block';
+        return;
+    }
+    document.getElementById('noti').style.display = 'none';
     RenderTableHeader(table);
     RenderTableBody(table, subjArr);
 }
+
+const RenderDate = cusDay => {
+    if(cusDay.day !== 'Chủ Nhật') {
+        document.getElementById('day').innerText = `Thứ ${cusDay.day}`; 
+    } else {
+        document.getElementById('day').innerText = cusDay.day; 
+    }
+    const date = cusDay.ToString();
+    document.getElementById('date').innerText = date; 
+}
+
+

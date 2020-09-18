@@ -4,7 +4,7 @@
 } 
 
 body {
-    width: 600px;
+    width: 720px;
     height: 60px;
     font: arial; 
 }
@@ -20,6 +20,12 @@ h3 {
 
 #tab {
     margin-top: 5px;
+    width: 100%;
+}
+
+#tabName {
+    height: 40px;
+    width: 100%;
 }
 
 .tabBody {
@@ -30,9 +36,9 @@ h3 {
     float: left;
     border: none;
     outline: none;
-    width: 200px;
+    width: 240px; 
     font-size: 17px;
-    height: 40px;
+    height: 100%;
     cursor: pointer;
 }
 
