@@ -107,35 +107,35 @@ const CrawlScript = () => {
 const ConvertClassHourToHour = classHour => {
   switch (classHour) {
     case '1':
-      return "6h45 AM";
+      return "6h45";
     case '2':
-      return "7h35 AM";
+      return "7h35";
     case '3':
-      return "8h25 AM";
+      return "8h25";
     case '4':
-      return "9h30 AM";
+      return "9h30";
     case '5':
-      return "10h20 AM";
+      return "10h20";
     case '6':
-      return "11h10 AM";
+      return "11h10";
     case '7':
-      return "12h45 PM";
+      return "12h45";
     case '8':
-      return "13h35 PM";
+      return "13h35";
     case '9':
-      return "14h25 PM";
+      return "14h25";
     case '10':
-      return "15h30 PM";
+      return "15h30";
     case '11':
-      return "16h20 PM";
+      return "16h20";
     case '12':
-      return "17h10 PM";
+      return "17h10";
     case '13':
-      return "18h15 PM";
+      return "18h15";
     case '14':
-      return "19h05 PM";
+      return "19h05";
     case '15':
-      return "19h55 PM";
+      return "19h55";
   }
 };
 
