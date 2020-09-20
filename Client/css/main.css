@@ -6,7 +6,7 @@
 body {
     width: 720px;
     height: 60px;
-    font: arial; 
+    font-family: 'Times New Roman', Times, serif;
 }
 
 header {
@@ -36,16 +36,23 @@ h3 {
     float: left;
     border: none;
     outline: none;
-    width: 240px; 
-    font-size: 17px;
+    width: 50%; 
+    font-size: 20px;
     height: 100%;
     cursor: pointer;
+    background-color: white; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .tabBtn:hover {
-    background-color: darkblue;
+    background-color: #689cc5;
+    color: white;
 }
 
 .tabContent {
     display: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
 }

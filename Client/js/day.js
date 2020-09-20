@@ -273,6 +273,7 @@ const RenderTableHeader = table => {
     const titleArr = ["Thứ", "Tiết", "Môn học", "Thời gian", "Phòng", "Giảng viên"];
     const header = table.createTHead();
     const row = header.insertRow();
+    row.classList.add('tableRow');
     titleArr.forEach(title => {
         const th = document.createElement("th");
         th.innerText = title;
@@ -290,6 +291,7 @@ const RemoveOldTable = table => {
 const RenderTableBody = (table, subjArr) => {
     subjArr.forEach(subject => {
         const row = table.insertRow();
+        row.classList.add('tableRow');
         const cellDay = row.insertCell();
         const cellClassHour = row.insertCell();
         const cellSubjName = row.insertCell();

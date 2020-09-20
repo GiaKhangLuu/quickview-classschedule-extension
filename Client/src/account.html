@@ -2,39 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/account.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
 </head>
 <body>
-    <div id="infoUser">
-        <div id="userIdContainer">
-            <span><b>MSSV:</b></span>
-            <span id="userid"></span>
+    <div id="preloader">
+        <div id="imgloader"></div>
+    </div>
+    <main>
+        <div id="infoUser" style="display: none;">
+            <div id="userIdContainer">
+                <span><b>MSSV:</b></span>
+                <span id="userid"></span>
+            </div>
+            <div id="userNameContainer">
+                <span><b>Tên sinh viên:</b></span>
+                <span id="username"></span>
+            </div>
         </div>
-        <div id="userNameContainer">
-            <span><b>Tên sinh viên:</b></span>
-            <span id="username"></span>
+        <div id="notiAnonymous" style="display: block;">
+            <h3>Xin chào, bạn hãy đăng nhập để có thể xem thời khoá biểu nhé !!!</h3>
         </div>
-    </div>   
-    <hr>
-    <div id="loginContainer">
-        <div class="loginForm"> 
-            <form >
-                <div class="form-row">
-                    <label>Tên đăng nhập</label>
-                    <input type="text" name="username" value="" /> <br>
-                </div>
-                <div class="form-row">
-                    <label>Mật khẩu</label>
-                    <input type="password" name="password"  value=""/> <br>
-                </div>
-                <div id="buttonContainer">
-                    <input type="button" id="btnLogin" value="Đăng nhập"/>
-                    <input type="button" id="btnLogout" value="Đăng xuất" disabled/>
-                </div>
-            </form>
+        <hr>
+        <div id="loginContainer" style="display: block;">
+            <div class="loginForm"> 
+                <form >
+                    <div class="form-row">
+                        <label>Tên đăng nhập</label> <br>
+                        <input class="inputText" type="text" name="username" value="" /> <br>
+                    </div>
+                    <div class="form-row">
+                        <label>Mật khẩu</label> <br>
+                        <input class="inputText" id="password" type="password" name="password"  value=""/> <br>
+                    </div>
+                    <div class="form-row">
+                        <input type="checkbox" name="" id="chbShowPass">
+                        <label for="">Hiện mật khẩu</label>
+                    </div>
+                    <p>*Sử dụng tài khoản sinh viên trang Portal để đăng nhập</p>
+                </form>
+            </div>
+        </div> 
+        <div id="dictimContainer" style="display: none;">
+            <p id="dictim"><b></b></p>
         </div>
-    </div> 
-    <script src="../js/account.js"></script>
+        <div id="buttonContainer">
+            <input type="button" id="btnLogin" value="Đăng nhập"/>
+            <input type="button" id="btnLogout" value="Đăng xuất" disabled/>
+        </div>
+    </main>
+    <script src="../js/dictim.js" type="module"></script>
+    <script src="../js/account.js" type="module"></script>
 </body>
 </html>

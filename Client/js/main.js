@@ -6,12 +6,13 @@ const OpenTab = tabContentId => {
     document.getElementById(tabContentId).style.display = "block";
 }
 
-document.getElementById('btnMonth').onclick = () => {
-    OpenTab('Month');
-}
-document.getElementById('btnDay').onclick = () => {
+const btnDay = document.getElementById('btnDay');
+
+btnDay.onclick = () => {
     OpenTab('Day');
 }
+
 document.getElementById('btnInfo').onclick = () => {
     OpenTab('Account');
 }
+
